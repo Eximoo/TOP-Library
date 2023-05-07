@@ -234,10 +234,6 @@ fieldset {
   display: flex;
   flex-direction: column;
 }
-.add-book > p > input {
-  /* width: 80%;
-  margin: 0 auto; */
-}
 .add-book > p > label {
   text-align: center;
 }
@@ -245,6 +241,7 @@ input::placeholder {
   color: rgba(255, 255, 255, 0.473);
 }
 input {
+  padding: 0 5px;
   font-size: 1rem;
   color: white;
   background-color: #00000000;
@@ -252,31 +249,30 @@ input {
   outline: none;
   border-bottom: 1px solid grey;
 }
-/* .add-book > p:nth-child(3) {
-  flex-direction: row;
-  color: rgba(255, 255, 255, 0.473);
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 30px;
-} */
 p.third-row {
   flex-direction: row;
   align-self: start;
 }
 p.third-row > label {
   color: rgba(255, 255, 255, 0.473);
-  font-size: 1.1rem;
-  margin: 5px 10px 0 10px;
+  font-size: 1.2rem;
+  margin: 1px 10px 0 20%;
 }
 input[type='checkbox'] {
-  margin-top: 6px;
-  accent-color: gray;
+  margin-top: 4px;
+  accent-color: rgba(65, 110, 46, 0.548);
 }
 input[type='number'] {
   width: 50%;
   flex-grow: 1;
 }
-
+.add-book-btn {
+  background-color: rgba(65, 110, 46, 0.548);
+  border: none;
+  color: #f7f7f7e8;
+  font-size: 3rem;
+  border-radius: 5px;
+}
 @media screen and (max-width: 768px) {
   nav {
     width: 100%;
