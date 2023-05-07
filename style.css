@@ -131,7 +131,18 @@ table {
   font-family: BebasNeue;
   src: url(BebasNeue-Regular.woff);
 }
+/* 
+TODO
+Ksiązi mają zabierać połowe wysokości grida ADD
+ustawić im heigh stały oraz gap jakiś fajny żeby to wyglądało sensonie (150 px dla książi i 50 px gap? teraz mam 350 na add book)
+książkowa kafelka będzie wyglądała tak że 
+U góy będzie TITLE kursywą
+linikcje niżej będzie autoamtyczine napisane by i author
+ilośc stron nie wiem gdzie jeszcze
+na dole dwa guziki mark as read/undread który się będize zmieniał w zależności od isRead oraz remove
+lub 3 guziki (edit, mark as read/unread/ remove)
 
+*/
 html {
   height: 100%;
 }
