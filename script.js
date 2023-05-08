@@ -2,13 +2,14 @@ const myLibrary = [];
 let bookCounter = 0;
 
 let theHobbit = new Book('The Hobbit', 'J. R. R. Tolkien', 450, false);
-let theHobbit2 = new Book('The Hobbit', 'J. R. R. Tolkien', 450, false);
-let theHobbit3 = new Book('The Hobbit', 'J. R. R. Tolkien', 450, false);
+let theHobbit2 = new Book('The Hobbit', 'J. R. R. Tolkien', 450, true);
+let theHobbit3 = new Book('The Hobbit', 'J. R. R. Tolkien', 450, true);
 let theHobbit4 = new Book('The Hobbit', 'J. R. R. Tolkien', 450, false);
-
-myLibrary.push(theHobbit, theHobbit2, theHobbit3, theHobbit4);
-displayCardsFromArr(myLibrary);
-displayCardsFromArr(myLibrary);
+myLibrary.push(theHobbit2, theHobbit, theHobbit4, theHobbit3);
+updateViewWithArr(myLibrary);
+let theHobbit5 = new Book('The Hobbit', 'J. R. R. Tolkien', 450, false);
+myLibrary.push(theHobbit5);
+updateViewWithArr(myLibrary);
 
 const form = document.getElementById('add-book-form');
 
@@ -24,7 +25,8 @@ form.addEventListener('submit', (event) => {
   //add to database
   myLibrary.push(book);
   //display new card
-  createCard(book);
+  createCard(book); //temp solution
+  //   displayCardsFromArr(myLibrary);
 });
 
 function Book(title, author, pages, isRead) {
@@ -37,37 +39,33 @@ function Book(title, author, pages, isRead) {
   this.changeStatus = function () {
     this.isRead = !this.isRead;
   };
+  this.deleteSelf = function () {
+    deleteBookFromView(this.id);
+    delete myLibrary[myLibrary.map((x) => x.id).indexOf(this.id)];
+  };
 }
-
-function displayCardsFromArr(bookArr) {
+function updateViewWithArr(bookArr) {
+  let indexListOfDisplayedBooks = Array.from(
+    document.getElementsByClassName('grid-cnt')[0].childNodes
+  )
+    .slice(3)
+    .map((y) => y.dataset.index);
   bookArr.forEach((book) => {
-    if (!isBookDisplayed(book)) {
+    if (!indexListOfDisplayedBooks.includes(`${book.id}`)) {
       createCard(book);
     }
   });
 }
-function isBookDisplayed(book) {
-  let isDisplayed = false;
-  let arr = Array.from(
-    document.getElementsByClassName('grid-cnt')[0].childNodes
-  ).slice(3);
-  console.log(arr);
-  arr.forEach((element) => {
-    console.log(element.dataset.index);
-    // if (book.id === element.dataset.index) {
-    //   isDisplayed = true;
-    // }
-  });
-  //   ((element) => {
-  //     console.log({ element });
-  //     numCallbackRuns++;
-  //   });
-  return isDisplayed;
+function deleteBookFromView(bookIndex) {
+  document.querySelector(`[data-index="${bookIndex}"]`).remove();
 }
 function createCard(book) {
   const newBook = document.createElement('div');
   newBook.setAttribute('class', 'book');
   newBook.setAttribute('data-index', `${book.id}`);
+  if (book.isRead) {
+    newBook.setAttribute('read', '');
+  }
   newBook.innerHTML = `
             <div class="book-title">${book.title}</div>
                 <div class="book-by">
@@ -77,8 +75,4 @@ function createCard(book) {
     `;
   const gridCnt = document.getElementsByClassName('grid-cnt');
   gridCnt[0].appendChild(newBook);
-}
-
-function addBook(test) {
-  myLibrary.push(test);
 }
