@@ -141,8 +141,8 @@ linikcje niżej będzie autoamtyczine napisane by i author
 ilośc stron nie wiem gdzie jeszcze
 na dole dwa guziki mark as read/undread który się będize zmieniał w zależności od isRead oraz remove
 lub 3 guziki (edit, mark as read/unread/ remove)
-
 */
+
 html {
   height: 100%;
 }
@@ -150,7 +150,7 @@ body {
   background-image: url(library-blurred.jpg);
   background-size: cover;
   resize: both;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 }
 nav {
   background-color: #0a0712;
@@ -211,14 +211,39 @@ polygon {
 .grid-cnt {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+  grid-auto-rows: 150px;
   width: 79.5%;
   margin: 20px auto;
+  padding-bottom: 20px;
+  gap: 10px;
 }
 .book {
   background-color: #0a0712a9;
+  color: white;
   width: auto;
-  height: 350px;
+  height: 150px;
   border-radius: 0.5rem;
+  padding: 20px;
+  text-align: center;
+}
+.book .book-by {
+  margin: 7px 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.61);
+}
+.book-title {
+  font-size: 1.5rem;
+}
+.big-book {
+  height: 310px;
+  grid-row: span 2;
+  background-color: #0a0712a9;
+  color: white;
+  width: auto;
+  border-radius: 0.5rem;
+}
+.book-pages {
+  font-size: 0.9rem;
 }
 .add-book {
   height: 100%;

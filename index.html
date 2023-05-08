@@ -12,6 +12,7 @@
       as="font"
       type="font/woff"
       crossorigin />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="main">
@@ -89,8 +90,8 @@
       </nav>
       <section>
         <div class="grid-cnt">
-          <div class="book">
-            <form action="" method="get">
+          <div class="big-book">
+            <form id="add-book-form" action="" method="post">
               <fieldset>
                 <legend>ADD NEW</legend>
                 <div class="inputs-cnt add-book">
@@ -99,21 +100,24 @@
                       type="text"
                       id="title"
                       name="title"
-                      placeholder="Title" />
+                      placeholder="Title"
+                      required />
                   </p>
                   <p>
                     <input
                       type="text"
                       id="author"
                       name="author"
-                      placeholder="Author" />
+                      placeholder="Author"
+                      required />
                   </p>
                   <p class="third-row">
                     <input
                       type="number"
                       id="pages"
                       name="pages"
-                      placeholder="# Pages" />
+                      placeholder="# Pages"
+                      required />
                     <label for="read">Read?</label>
                     <input type="checkbox" id="read" name="read" />
                   </p>
