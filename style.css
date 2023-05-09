@@ -297,6 +297,31 @@ p.third-row > label {
   font-size: 1.2rem;
   margin: 1px 10px 0 20%;
 }
+.read-btn {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  height: 30px;
+  width: 6rem;
+  border-radius: 10px;
+  appearance: none;
+  /* font-size: 0.9rem; */
+  color: #070707ea;
+  background-color: rgba(255, 255, 255, 0.76);
+  border: none;
+}
+.read-btn {
+  margin-left: auto;
+  margin-top: 10px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  height: 2rem;
+  width: 3rem;
+  border-radius: 10px;
+  appearance: none;
+  background-color: #00000000;
+  border: 1px solid rgba(255, 255, 255, 0.527);
+}
+.read-btn svg {
+  max-height: 30px;
+}
 input[type='checkbox'] {
   margin-top: 4px;
   accent-color: rgba(65, 110, 46, 0.548);

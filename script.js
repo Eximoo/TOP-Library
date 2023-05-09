@@ -7,15 +7,10 @@ let theHobbit3 = new Book('The Hobbit', 'J. R. R. Tolkien', 450, true);
 let theHobbit4 = new Book('The Hobbit', 'J. R. R. Tolkien', 450, false);
 myLibrary.push(theHobbit2, theHobbit, theHobbit4, theHobbit3);
 updateViewWithArr(myLibrary);
-let theHobbit5 = new Book('The Hobbit', 'J. R. R. Tolkien', 450, false);
-myLibrary.push(theHobbit5);
-updateViewWithArr(myLibrary);
 
 const form = document.getElementById('add-book-form');
-
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-
   let book = new Book(
     form.elements['title'].value,
     form.elements['author'].value,
@@ -24,9 +19,9 @@ form.addEventListener('submit', (event) => {
   );
   //add to database
   myLibrary.push(book);
-  //display new card
-  createCard(book); //temp solution
-  //   displayCardsFromArr(myLibrary);
+  //createCard(book); //was temp solution
+  updateViewWithArr(myLibrary);
+  form.reset();
 });
 
 function Book(title, author, pages, isRead) {
@@ -38,12 +33,23 @@ function Book(title, author, pages, isRead) {
   bookCounter++;
   this.changeStatus = function () {
     this.isRead = !this.isRead;
+    updateReadStatusInView(this.id);
   };
   this.deleteSelf = function () {
     deleteBookFromView(this.id);
     delete myLibrary[myLibrary.map((x) => x.id).indexOf(this.id)];
   };
 }
+
+function updateReadStatusInView(bookIndex) {
+  const el = document.querySelector(`[data-index="${bookIndex}"]`);
+  if (el.hasAttribute('read')) {
+    el.removeAttribute('read');
+  } else {
+    el.setAttribute('read', 0);
+  }
+}
+
 function updateViewWithArr(bookArr) {
   let indexListOfDisplayedBooks = Array.from(
     document.getElementsByClassName('grid-cnt')[0].childNodes
@@ -73,6 +79,19 @@ function createCard(book) {
                 </div>
             <div class="book-pages">${book.pages}</div>
     `;
+  const btn = document.createElement('button');
+  btn.className = 'read-btn';
+  btn.innerHTML =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>sync</title><path d="M12,18A6,6 0 0,1 6,12C6,11 6.25,10.03 6.7,9.2L5.24,7.74C4.46,8.97 4,10.43 4,12A8,8 0 0,0 12,20V23L16,19L12,15M12,4V1L8,5L12,9V6A6,6 0 0,1 18,12C18,13 17.75,13.97 17.3,14.8L18.76,16.26C19.54,15.03 20,13.57 20,12A8,8 0 0,0 12,4Z" /></svg>';
+  btn.addEventListener('click', () => {
+    book.changeStatus();
+  });
+
+  // btn.addEventListener('click', () => {
+  //   book.deleteSelf();
+  // });
+  newBook.append(btn);
+
   const gridCnt = document.getElementsByClassName('grid-cnt');
   gridCnt[0].appendChild(newBook);
 }
